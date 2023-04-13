@@ -21,8 +21,19 @@ namespace MoveOrders
             var faireAccessToken = Environment.GetEnvironmentVariable("X-FAIRE-ACCESS-TOKEN");
             var baseLinkerToken = Environment.GetEnvironmentVariable("X-BLToken");
 
-            var faireOrders = GetOrdersFromFaire(faireAccessToken).Where(order=> order.CreatedAt == myTimer.ScheduleStatus.Last || order.UpdatedAt == myTimer.ScheduleStatus.Last).DistinctBy(order => order.Id).ToList();
-            var baseLinkerOrders = ConvertFaireToBaseLinkerOrder(faireOrders);
+            var allFaireOrders = GetOrdersFromFaire(faireAccessToken)
+                .DistinctBy(order => order.Id)
+                .ToList();
+
+            var mostRecentFaireOrders = allFaireOrders
+                .Where(order => order.CreatedAt >= myTimer.ScheduleStatus.Last)
+                .ToList();
+
+            // Za pierwszym razem parametr myTimer.ScheduleStatus.Last przyjmuje wartośc default DateTime (1/1/0001 12:00:00 AM), więc zostaną pobrane wszystkie zamówienia.
+            // Za każdym kolejnym razem bedą pobierane jedynie zamówienia, które zostały utworzone po ostatnim wywołaniu funkcji.
+
+
+            var baseLinkerOrders = ConvertFaireToBaseLinkerOrder(mostRecentFaireOrders);
 
             AddBaseLinkerOrders(baseLinkerOrders, baseLinkerToken);
         }
@@ -65,7 +76,7 @@ namespace MoveOrders
                 {
                     OrderStatusId = 8069,
                     CustomSourceId = 1024,
-                    Phone = faireOrder.Address.PhoneNumber,
+                    DateAdd = (int)((DateTimeOffset)faireOrder.CreatedAt).ToUnixTimeSeconds(),                   
                     ExtraField1 = faireOrder.Id,
                 };
                 baseLinkerOrders.Add(convertedBaseLinkerOrder);

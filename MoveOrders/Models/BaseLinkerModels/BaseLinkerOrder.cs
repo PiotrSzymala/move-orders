@@ -13,7 +13,7 @@ namespace MoveOrders.Models.BaseLinkerModels
         public int CustomSourceId { get; set; }
 
         [JsonProperty("date_add")]
-        public string DateAdd { get; set; }
+        public int DateAdd { get; set; }
 
         [JsonProperty("user_comments")]
         public string UserComments { get; set; }
