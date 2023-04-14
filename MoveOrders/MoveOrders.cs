@@ -16,7 +16,7 @@ namespace MoveOrders
         [FunctionName("MoveOrders")]
         public void Run([TimerTrigger("0 */10 * * * *")]TimerInfo myTimer, ILogger log)
         {
-            //log.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
+            // log.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
 
             var faireAccessToken = Environment.GetEnvironmentVariable("X-FAIRE-ACCESS-TOKEN");
             var baseLinkerToken = Environment.GetEnvironmentVariable("X-BLToken");
@@ -29,8 +29,8 @@ namespace MoveOrders
                 .Where(order => order.CreatedAt >= myTimer.ScheduleStatus.Last)
                 .ToList();
 
-            // Za pierwszym razem parametr myTimer.ScheduleStatus.Last przyjmuje wartośc default DateTime (1/1/0001 12:00:00 AM), więc zostaną pobrane wszystkie zamówienia.
-            // Za każdym kolejnym razem bedą pobierane jedynie zamówienia, które zostały utworzone po ostatnim wywołaniu funkcji.
+            /* Za pierwszym razem parametr myTimer.ScheduleStatus.Last przyjmuje wartośc default DateTime (1/1/0001 12:00:00 AM), więc zostaną pobrane wszystkie zamówienia.
+             Za każdym kolejnym razem bedą pobierane jedynie zamówienia, które zostały utworzone po ostatnim wywołaniu funkcji. */
 
 
             var baseLinkerOrders = ConvertFaireToBaseLinkerOrder(mostRecentFaireOrders);
@@ -49,7 +49,20 @@ namespace MoveOrders
             return JsonConvert.DeserializeObject<List<FaireOrder>>(response.Content);
         }
 
-       private static void AddBaseLinkerOrders(List<BaseLinkerOrder> orders, string baselinkerToken)
+
+        /* Dokumentacja Baselinkera informuje o przepustowości ograniczonej do 100 zapytań na minutę. Może nastąpić sytuacja, że jednorazowo będziemy chcieli dodać więcej niż 100 zamówień. 
+           Cześciowo rozwiązałem ten problem z pomocą klasy TimerInfo, ponieważ po pierwszym wykonaniu funkcji będa pobierane jedynie zamówienia sprzed ostatnich 10 min, więc jest mała szansa na wykorzystanie limitu.
+           Wszystko zależy od tego jak duży jest ruch w sklepie, z którego pobieramy zamówienia.   
+           W celu całkowitej pewności, że problem ten nie wystąpi, widziałbym kilka możliwych rozwiązań.
+
+           Pierwszą i najbardziej prymitywną opcją jest stworzenie w poniższej funkcji licznika w pętli, który po osiągnięciu danej liczby
+             (bezpieczniejszą wartościa od 100 była by jakaś liczba około 90, bo w ciągu danej minuty mogły być tez wykonane już przez nas jakieś inne operacje) zatrzyma wykonywanie programu na minutę.
+
+           Drugą opcją było by wymuszanie opóźnienia bezpośrednio pomiędzy przesyłaniem zapytań np. wymusić konieczność wysyłania jednego zapytania na sekunde. 
+
+           Kolejną możliwością byłoby skorzystanie z jakiejś bramki API do przekierowywania ruchu, która współpracuje z baselinkerem. */
+
+        private static void AddBaseLinkerOrders(List<BaseLinkerOrder> orders, string baselinkerToken)
         {
             var client = new RestClient("https://api.baselinker.com/connector.php");
 
