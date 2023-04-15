@@ -7,8 +7,7 @@ Jednakże na tej samej stronie dokumentacji w przykładowym inpucie, ten sam par
 ```"order_status_id": "6624"```
 Założyłem w tej i podobnych sytuacjach, że dokumentacja jest ważniejsza niż jej przykład użycia i przyjąłem typ (w tym konkretnym wypadku) liczbowy. 
 
-* W przypadku 6 punktu wydaje mi się, że jedynymi niezbędnymi właściwościami są te z 3, 4 i 7 punktu z zadania ze szczególnym naciskiem na ten ostatni, 
-ponieważ w polu dodatkowym w baselinkerze podaje id do zamówienia z Faire. Teoretycznie pozwoliłoby to bezpośrednio zidentyfikować adres i co zawiera zamówienie, ale nie jestem całkowicie pewny ze względu na lakoniczność dokumentacji oraz brak możliwości przetestowania rozwiązania, więc dodałem też inne pola, które wydają się odpowiadać za to samo w obu przypadkach (adres, szczegóły produktu itp.). Dodatkowo rozwija to też moje rozwiązanie.
+* W przypadku 6 punktu polecenia wydaje mi się, że jedynymi niezbędnymi właściwościami są te z 3, 4 i 7 punktu z zadania ze szczególnym naciskiem na ten ostatni, ponieważ do dodatkowego pola w baselinkerze dodaję id zamówienia z Faire. Najprawdopodobniej oznacza to, że nie trzeba przenosić innych pól, ponieważ w każdym zamówieniu w BL będziemy mieć podane id zamówienia z Faire. W związku z tym, że nie jestem całkowicie pewny ze względu na lakoniczność dokumentacji oraz brak możliwości przetestowania rozwiązania samemu, dodałem też inne pola, które wydają się odpowiadać za to samo w obu API (adres, szczegóły produktu itp.). Dodatkowo rozwija to też funkcjonalność mojego rozwiązania.
 
 ## Ograniczenia
 Dokumentacja Baselinkera informuje o przepustowości ograniczonej do 100 zapytań na minutę. Może nastąpić sytuacja, że jednorazowo będziemy chcieli dodać więcej niż 100 zamówień.
@@ -27,4 +26,4 @@ To rozwiązanie jest najbardziej prymitywne i nie jestem jego zwolennikiem.
 Z tego, co się dowiedziałem, istnieje również możliwość negocjacji maksymalnego limitu zapytań na minutę z pomocą techniczną Baselinkera.
         
 Uważam, że nie ma tu jednego, najlepszego rozwiązania. Wszystko zależy od potrzeb, ilości zasobów oraz tego, jak duży jest ruch w sklepie.
-W związku z tym, że nic nie było o tym wspomniane w poleceniu zadania, założyłem, że ruch jest na tyle mały, iż moje obecne rozwiązanie problemu wystarczy na ten moment.
+W związku z tym, że nie było to wspomniane w poleceniu zadania, założyłem, że ruch jest na tyle mały, iż moje obecne rozwiązanie problemu wystarczy na ten moment.
