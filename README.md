@@ -7,7 +7,7 @@ Jednakże na tej samej stronie dokumentacji w przykładowym inpucie, ten sam par
 ```"order_status_id": "6624"```
 Założyłem w tej i podobnych sytuacjach, że dokumentacja jest ważniejsza niż jej przykład użycia i przyjąłem typ (w tym konkretnym wypadku) liczbowy. 
 
-* W przypadku 6 punktu wydaje mi się, że jedynymi niezbędnymi właściwościami są te z 3,4 i 7 punktu z zadania ze szczególnym naciskiem na ten ostatni, 
+* W przypadku 6 punktu wydaje mi się, że jedynymi niezbędnymi właściwościami są te z 3, 4 i 7 punktu z zadania ze szczególnym naciskiem na ten ostatni, 
 ponieważ w polu dodatkowym w baselinkerze podaje id do zamówienia z Faire. Teoretycznie pozwoliłoby to bezpośrednio zidentyfikować adres i co zawiera zamówienie, ale nie jestem całkowicie pewny ze względu na lakoniczność dokumentacji oraz brak możliwości przetestowania rozwiązania, więc dodałem też inne pola, które wydają się odpowiadać za to samo w obu przypadkach (adres, szczegóły produktu itp). Dodatkowo rozwija to też moje rozwiązanie.
 
 ## Ograniczenia
