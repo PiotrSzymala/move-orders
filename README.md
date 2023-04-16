@@ -11,6 +11,9 @@ Założyłem w tej i podobnych sytuacjach, że dokumentacja jest ważniejsza ni�
 
 ## Ograniczenia
 
+### Pojedyncze przekazywanie zamówień
+W dokumentacji BaseLinkera, do której mam dostęp nie ma metody, która pozwoliłaby na jednorazowe dodanie wszystkich zamówien, więc w metodzie ```AddBaseLinkerOrders``` z pomocą pętli iteruje po wszystkich zamówieniach i dodaje je po kolei po jednym.
+
 ### Przepustowość 
 Dokumentacja Baselinkera informuje o przepustowości ograniczonej do 100 zapytań na minutę. Może nastąpić sytuacja, że jednorazowo będziemy chcieli dodać więcej niż 100 zamówień.
 Jest to dosyć istotna kwestia, ponieważ przy przekroczeniu limitu, możliwośc wykonywania zapytań zostaje zablokowana na 10 min. Częściowo rozwiązałem ten problem za pomocą możliwości, jakie implementuje klasa TimerInfo, ponieważ po pierwszym wykonaniu funkcji będą pobierane jedynie zamówienia sprzed ostatnich 10 min, więc jest mała szansa na przekroczenie limitu.
@@ -29,7 +32,3 @@ Z tego, co się dowiedziałem, istnieje również możliwość negocjacji maksym
         
 Uważam, że nie ma tu jednego, najlepszego rozwiązania. Wszystko zależy od potrzeb, ilości zasobów oraz tego, jak duży jest ruch w sklepie.
 W związku z tym, że nie było to wspomniane w poleceniu zadania, założyłem, że ruch jest na tyle mały, iż moje obecne rozwiązanie problemu wystarczy na ten moment.
-
-### Pojedyncze przekazywanie zamówień
-W dokumentacji BaseLinkera, do której mam dostęp nie ma metody, która pozwoliłaby na jednorazowe dodanie wszystkich zamówien, więc w metodzie ```AddBaseLinkerOrders``` z pomocą pętli iteruje po wszystkich zamówieniach i dodaje je po kolei po jednym.
-
