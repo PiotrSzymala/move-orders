@@ -48,28 +48,11 @@ namespace MoveOrders
         }
 
 
-        /* Dokumentacja Baselinkera informuje o przepustowości ograniczonej do 100 zapytań na minutę. Może nastąpić sytuacja, że jednorazowo będziemy chcieli dodać więcej niż 100 zamówień. 
-           Cześciowo rozwiązałem ten problem z pomocą klasy TimerInfo, ponieważ po pierwszym wykonaniu funkcji będa pobierane jedynie zamówienia sprzed ostatnich 10 min, więc jest mała szansa na przekroczenie limitu.
-           Wszystko zależy od tego jak duży jest ruch w sklepie, z którego pobieramy zamówienia.   
-           W celu całkowitej pewności, że problem ten nie wystąpi, widziałbym kilka możliwych rozwiązań.
-
-           Pierwszą i najbardziej prymitywną opcją jest stworzenie w poniższej funkcji licznika w pętli, który po osiągnięciu danej liczby
-             (bezpieczniejszą wartościa od 100 była by jakaś liczba około 90, bo w ciągu danej minuty mogły być tez wykonane już przez nas jakieś inne operacje) zatrzyma wykonywanie programu na minutę.
-
-           Drugą opcją było by wymuszanie opóźnienia bezpośrednio pomiędzy przesyłaniem zapytań np. wymusić konieczność wysyłania maksymalnie jednego zapytania na sekunde. 
-
-           Kolejną możliwością byłoby skorzystanie z jakiejś bramki API do przekierowywania ruchu, która współpracuje z Baselinkerem.
-        
-           Z tego co się również dowiedziałem istnieje możliwość negocjacji maksymalnego limitu zapytan z Baselinkerem.
-        
-           Uważam że nie ma tu jednego, najlepszego rozwiązania. Wszystko zależy od potrzeb, ilości zasóbów oraz tego jak duży jest ruch w sklepie.
-           W związku z tym, że nic nie było o tym wspomniane w poleceniu zadania, założyłem że ruch jest na tyle mały, iż moje obecne rozwiązanie problemu wystarczy na ten moment. */
-
         private static void AddBaseLinkerOrders(List<BaseLinkerOrder> orders, string baselinkerToken)
         {
             var client = new RestClient("https://api.baselinker.com/connector.php");
 
-            foreach (var baseLinkerOrder in orders) // W dokumentacji BaseLinkera, do której mam dostęp nie ma metody, która pozwolilaby na jednorazowe dodanie wszystkich zamowien, wiec dodaje po jednym.
+            foreach (var baseLinkerOrder in orders) 
             {
 
                 var request = new RestRequest("https://api.baselinker.com/connector.php", Method.Post);
