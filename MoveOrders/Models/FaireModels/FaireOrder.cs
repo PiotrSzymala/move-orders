@@ -15,27 +15,10 @@ namespace MoveOrders.Models.FaireModels
         [JsonProperty("updated_at")]
         public DateTime UpdatedAt { get; set; }
 
-        [JsonProperty("state")]
-        public string State { get; set; }
-
         [JsonProperty("items")]
         public List<FaireOrderItem> Items { get; set; }
 
         [JsonProperty("address")]
-        public FaireOrderAddress Address { get; set; }
-
-        [JsonProperty("retailer_id")]
-        public string RetailerId { get; set; }
-
-        [JsonProperty("payout_costs")]
-        public FaireOrderPayoutCosts PayoutCosts { get; set; }
-
-        [JsonProperty("source")]
-        public string Source { get; set; }
-
-        public FaireOrder()
-        {
-        }
+        public FaireOrderAddress Address { get; set; }      
     }
 }
-

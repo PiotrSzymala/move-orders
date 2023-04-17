@@ -29,4 +29,7 @@
     <Folder Include="Models\FaireModels\" />
     <Folder Include="Models\BaseLinkerModels\" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Models\FaireModels\FaireOrderPayoutCosts.cs" />
+  </ItemGroup>
 </Project>
