@@ -37,16 +37,16 @@ namespace MoveOrders.Models.BaseLinkerModels
         public string PaymentMethod { get; set; }
 
         [JsonProperty("payment_method_cod")]
-        public string PaymentMethodCod { get; set; }
+        public bool PaymentMethodCod { get; set; }
 
         [JsonProperty("paid")]
-        public string Paid { get; set; }
+        public bool Paid { get; set; }
 
         [JsonProperty("delivery_method")]
         public string DeliveryMethod { get; set; }
 
         [JsonProperty("delivery_price")]
-        public string DeliveryPrice { get; set; }
+        public float DeliveryPrice { get; set; }
 
         [JsonProperty("delivery_fullname")]
         public string DeliveryFullname { get; set; }
@@ -109,7 +109,7 @@ namespace MoveOrders.Models.BaseLinkerModels
         public string InvoiceCountryCode { get; set; }
 
         [JsonProperty("want_invoice")]
-        public string WantInvoice { get; set; }
+        public bool WantInvoice { get; set; }
 
         [JsonProperty("extra_field_1")]
         public string ExtraField1 { get; set; }
