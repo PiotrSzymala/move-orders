@@ -7,7 +7,7 @@ namespace MoveOrders.Models.BaseLinkerModels
     public class BaseLinkerOrder
     {
         [JsonProperty("order_status_id")]
-        public int OrderStatusId { get; set; } //W dokumentacji BL jest polem typu int, ale juz w przykladzie, w formacie json jest typem string. 
+        public int OrderStatusId { get; set; }
 
         [JsonProperty("custom_source_id")]
         public int CustomSourceId { get; set; }
