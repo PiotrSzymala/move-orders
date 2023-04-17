@@ -12,9 +12,6 @@ namespace MoveOrders.Models.FaireModels
         public string Address2 { get; set; }
 
         [JsonProperty("phone_number")]
-        public string PhoneNumber { get; set; }
-
-        [JsonProperty("country")]
-        public string Country { get; set; }      
+        public string PhoneNumber { get; set; }  
     }
 }
