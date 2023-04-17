@@ -7,6 +7,8 @@ Jednakże na tej samej stronie dokumentacji w przykładowym inpucie, ten sam par
 ```"order_status_id": "6624"```
 Założyłem w tej i podobnych sytuacjach, że dokumentacja jest ważniejsza niż jej przykład użycia i przyjąłem typ (w tym konkretnym wypadku) liczbowy. 
 
+* Dzięki możliwościom biblioteki Newtonsoft Json nie musiałem tworzyć właściwośći, z których nie będę korzystał. Dzięki atrybutowi ```[JsonProperty()]``` mogłem pobrać z Faire tylko te dane, które były mi potrzebne. Biblioteka ta korzysta również z domyślnego konstruktora do inicializacji obiektu. 
+
 * W przypadku 6 punktu polecenia wydaje mi się, że jedynymi niezbędnymi właściwościami są te z 3, 4 i 7 punktu z zadania ze szczególnym naciskiem na ten ostatni, ponieważ do dodatkowego pola w baselinkerze dodaję id zamówienia z Faire. Najprawdopodobniej oznacza to, że nie trzeba przenosić innych pól, ponieważ w każdym zamówieniu w BL będziemy mieć podane id zamówienia z Faire. W związku z tym, że nie jestem całkowicie pewny ze względu na lakoniczność dokumentacji oraz brak możliwości przetestowania rozwiązania samemu, zmapowałem też inne pola, które wydają się odpowiadać za to samo w obu API (adres, szczegóły produktu itp.). Dodatkowo rozwija to też funkcjonalność mojego rozwiązania.
 
 ## Ograniczenia
